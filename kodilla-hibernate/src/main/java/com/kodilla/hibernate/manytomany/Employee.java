@@ -8,7 +8,7 @@ import java.util.List;
 
 @NamedNativeQuery(
         name = "Company.findEmployeeByPartOfName",
-        query = "SELECT * FROM EMPLOYEES WHERE LASTNAME LIKE '%keyword%' = :PARTOFLASTNAME",
+        query = "SELECT * FROM EMPLOYEES WHERE LASTNAME LIKE '%%' = :PARTOFLASTNAME",
         resultClass = Company.class)
 
 @Entity

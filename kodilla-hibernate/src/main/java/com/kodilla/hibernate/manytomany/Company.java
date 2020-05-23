@@ -8,7 +8,7 @@ import java.util.List;
 
 @NamedNativeQuery(
         name = "Company.findCompanyByPartOfName",
-        query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME LIKE '%keyword%' = :PARTOFCOMPANYNAME",
+        query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME LIKE '%%' = :PARTOFCOMPANYNAME",
         resultClass = Company.class
 )
 
