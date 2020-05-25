@@ -13,16 +13,15 @@ public class FacadeWatcher {
     private static final Logger LOGGER = LoggerFactory.getLogger(FacadeWatcher.class);
 
 
-    @Before("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))")
-    public void logEvent(){
-        LOGGER.info("LAMIACA WIADOMOSC - PADA DESZCZ");
-    }
-
-   //@Before("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))" +
-     //       "&& args(orderFacade, userID) && target(object)")
-    //public void logEvent(OrderFacade orderFacade, Long userID, Object object) {
-
-      //  LOGGER.info("Class: " + object.getClass().getName() + ", Args: " + orderFacade + userID);
+    //@Before("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))")
+   // public void logEvent(){
+     //   LOGGER.info("LAMIACA WIADOMOSC - PADA DESZCZ");
    // }
+
+   @Before(value = "execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..)) && args(order, userID)", argNames = "order,userID")
+    public void logEvent(OrderDto order, Long userID) {
+
+        LOGGER.info("The order: "+ order + "of UserId: " + userID);
+   }
 
 }

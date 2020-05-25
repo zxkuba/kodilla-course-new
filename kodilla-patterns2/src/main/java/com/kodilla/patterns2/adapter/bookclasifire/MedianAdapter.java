@@ -1,7 +1,7 @@
 package com.kodilla.patterns2.adapter.bookclasifire;
 
 
-import com.kodilla.patterns2.adapter.bookclasifire.librarya.Book;
+import com.kodilla.patterns2.adapter.bookclasifire.libraryb.Book;
 import com.kodilla.patterns2.adapter.bookclasifire.librarya.Classifier;
 import com.kodilla.patterns2.adapter.bookclasifire.libraryb.BookSignature;
 
@@ -15,29 +15,18 @@ public class MedianAdapter extends MedianAdaptee implements Classifier {
 
 
     @Override
-    public int publicationYearMedian(Set<Book> bookSet) {
+    public int publicationYearMedian(Set<com.kodilla.patterns2.adapter.bookclasifire.librarya.Book> bookSet) {
 
-       // Map<String, > bookMap = new HashMap<>();
-        Map<BookSignature, Book> mapedBokkMap = new HashMap<>();
-     //   bookSet.stream().collect(Collectors.toMap(Book::getSignature, v->v));
-        //for(int i=0; i<bookSet.size(); i++){
-          //  bookMap.put(book.getSignature(), book);
-        //}
-        for(int i=0; i<mapedBokkMap.size(); i++){
-            mapedBokkMap.put((BookSignature) book.getSignature(),
-                    new Book(book.getAuthor(), book.getTitle(), book.getPublicationYear(), book.getSignature()));
+        Map<BookSignature, Book> bookMap = new HashMap<>();
+
+        for(com.kodilla.patterns2.adapter.bookclasifire.librarya.Book bookA: bookSet){
+            BookSignature signature = new BookSignature(bookA.getSignature());
+            Book bookB = new Book(
+                    bookA.getAuthor(),
+                    bookA.getTitle(),
+                    bookA.getPublicationYear());
+            bookMap.put(signature, bookB);
         }
-
-      // for(Map.Entry<BookSignature, Book> entry: mapedBokkMap.entrySet()){
-        // BookSignature key = entry.getKey();
-          // Book value = entry.getValue();
-        //}
-
-       // for(Map.Entry<String, Book> entry: bookMap.entrySet()){
-         //   if(entry.getValue() instanceof Book){
-           //     mapedBokkMap.put((BookSignaturere) entry.getKey(), entry.getValue());
-           // }
-        //}
-        return medianPublicationYear(mapedBokkMap)
+        return medianPublicationYear(bookMap);
         }
 }
