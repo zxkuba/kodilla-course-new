@@ -25,7 +25,7 @@ class MedianAdapterTest {
         MedianAdapter adapter = new MedianAdapter();
         //When
         Integer median = adapter.publicationYearMedian(bookA);
-        
+
         //Then
         assertEquals(2009, median);
     }
